@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="container">
     
-    <a href="/" style="text-decoration:none; color: inherit;"><h1>{{ title }}</h1></a>
+    <a href="/" style="text-decoration:none; color: #dbdbdb;"><h1>{{ title }}</h1></a>
     <Divider />
     
     <form class="full-width-form" @submit.prevent="calculateLength">
@@ -10,34 +10,44 @@
           class="full-width-input"
           autofocus
           type="text"
-          placeholder="Paste YouTube Playlist Link"
+          placeholder="Paste YouTube Playlist Link Here"
           v-model="youtubePlaylistId"
           :class="{'p-invalid': invalidLink !== '' && youtubePlaylistId !== ''}"
         />
-        <Button label="Submit" class="full-width-submit" @click="calculateLength" v-if="isLinkInvalid != true" />
+        <Button label="Submit" 
+          class="full-width-submit" 
+          @click="calculateLength" 
+          v-if="isLinkInvalid != true" 
+          icon="pi pi-arrow-right"
+          iconPos="right"
+        /> 
       </div>
-      <InlineMessage class="full-width-inlineMessage" severity="error" v-if="invalidLink != '' && youtubePlaylistId != ''">
-        {{ invalidLink }}
+      <InlineMessage 
+        class="full-width-inlineMessage" 
+        severity="error" 
+        v-if="invalidLink != '' && youtubePlaylistId != ''">
+          {{ invalidLink }}
       </InlineMessage>
     </form>
 
     <div class="slider-container">
-      <div class="p-card p-d-flex p-justify-center" style="padding: 10px; border: 1px solid #304562; border-radius: 10px;">
-        <p>Playback Speed: {{ playbackSpeed }}x</p>
+      <div class="p-card p-d-flex p-justify-center" style="padding: 1rem; border: 0.09rem solid #304562; border-radius: 0.5rem;">
+        <p style="color: #a2a6ac">Playback Speed: {{ playbackSpeed }}x <i class="pi pi-forward"></i></p>
         <Slider type="range" v-model="playbackSpeed" :min="0.25" :max="2" :step="0.05" />
       </div>
     </div>
 
 
     <div class="playlist-items" v-if="response && response.data && response.data.video_list !== 'Invalid link'">
-      <h3>Playlist Duration: {{ formatDuration(adjustedDuration) }}</h3>
+      <h3 style="color: #dbdbdb;">Playlist Duration: {{ formatDuration(adjustedDuration) }} <i class="pi pi-clock"></i></h3>
+      <p style="color: #dbdbdb;">Total Videos: {{ response.data.video_list.length }} <i class="pi pi-hashtag"></i></p>
       <Divider />
       <div class="card-container">
-        <div v-for="video in response.data.video_list" :key="video.snippet.title" class="card" style="margin-bottom: 10px;">
+        <div v-for="video in response.data.video_list" :key="video.snippet.title" class="card">
           <a :href="'https://www.youtube.com/watch?v=' + video.snippet.resourceId.videoId" style="text-decoration:none">
-            <Card style="border: 1px solid #304562; border-radius: 10px;">
+            <Card style="border: 0.09rem solid #304562; border-radius: 0.5rem;">
               <template #header>
-                <img alt="Thumbnail" :src="video.snippet.thumbnails.medium.url" style="border: 1px solid #304562; border-radius: 10px;" />
+                <img alt="Thumbnail" :src="video.snippet.thumbnails.medium.url" style="border: 0.09rem solid #304562; border-radius: 0.5rem;" />
               </template>
               <template #content><p>{{ video.snippet.position + 1 }}. {{ video.snippet.title }}</p></template>
             </Card>

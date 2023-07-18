@@ -1,8 +1,3 @@
-/* #app {
-  text-align: center;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-} */
-
 body {
     font-family: var(--font-family);
     background-color: #040d1b;
@@ -25,7 +20,7 @@ body {
 
 .full-width-form {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 1rem;
   }
   
   .input-container {
@@ -34,31 +29,30 @@ body {
   
   .full-width-input {
     flex-grow: 1;
-    margin-bottom: 10px;
+    margin-bottom: 0.5rem;
   }
   
   .full-width-inlineMessage {
     width: 100%;
-    margin-bottom: 10px;
   }
   
   .full-width-submit {
-    width: 100px;
-    margin-bottom: 10px;
-    margin-left: 10px;
+    width: 7rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
   }
   
 
 .slider-container {
   width: 100%;
-  margin-top: 20px;
-  margin-bottom: 10px;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
   text-align: center;
 }
 
 .playlist-items {
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -69,9 +63,10 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 1rem;
 }
   
 .card {
     width: 320px;
-    margin: 10px;
+    margin: 0.5rem;
 }
