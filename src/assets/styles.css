@@ -70,3 +70,8 @@ body {
     width: 320px;
     margin: 0.5rem;
 }
+
+.accordion-table {
+    width: 100%;
+    text-align: center;
+}

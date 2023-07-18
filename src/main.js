@@ -8,6 +8,8 @@ import ScrollTop from 'primevue/scrolltop';
 import Slider from 'primevue/slider';
 import Card from 'primevue/card';
 import Divider from 'primevue/divider';
+import Accordion from 'primevue/accordion';
+import AccordionTab from 'primevue/accordiontab';
 
 
 // theme
@@ -24,4 +26,6 @@ app.component('ScrollTop', ScrollTop);
 app.component('Slider', Slider);
 app.component('Card', Card);
 app.component('Divider', Divider);
+app.component('Accordion', Accordion);
+app.component('AccordionTab', AccordionTab);
 app.mount('#app')

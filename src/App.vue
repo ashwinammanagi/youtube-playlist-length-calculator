@@ -40,7 +40,7 @@
 
     <div class="playlist-items" v-if="response && response.data && response.data.video_list !== 'Invalid link'">
       <h3 style="color: #dbdbdb;">Playlist Duration: {{ formatDuration(adjustedDuration) }} <i class="pi pi-clock"></i></h3>
-      <p style="color: #dbdbdb;">Total Videos: {{ response.data.video_list.length }} <i class="pi pi-hashtag"></i></p>
+      <p style="color: #dbdbdb;">Total Videos: {{ response.data.video_list.length }}</p>
       <Divider />
       <div class="card-container">
         <div v-for="video in response.data.video_list" :key="video.snippet.title" class="card">
@@ -53,6 +53,30 @@
             </Card>
           </a>
         </div>
+      </div>
+    </div>
+
+    <div class="accordion-table" v-else>
+      <Divider />
+      FAQs
+      <div style="margin-top: 2rem; text-align: left;">
+        <Accordion >
+            <AccordionTab header="What is YouTube Playlist Length Calculator?">
+                <p>
+                  YouTube Playlist Length Calculator allows you to calculate the total duration of YouTube playlist. Paste the playlist link above to calculate the length. Current limitation allows maximum videos of 50 in the playlist.
+                </p>
+            </AccordionTab>
+            <AccordionTab header="How to adjust the playback speed for calculating the playlist duration?">
+                <p>
+                    Use the slider to change the playback speed. The duration will be calculated as per your desired playback setting.
+                </p>
+            </AccordionTab>
+            <AccordionTab header="What are the features?">
+                <p>
+                    You can find out the total duration, total number of videos and display all the videos in the playlist with the video thumbnail and link.
+                </p>
+            </AccordionTab>
+        </Accordion>
       </div>
     </div>
 
