@@ -11,7 +11,7 @@ import Divider from 'primevue/divider';
 
 // theme
 import 'primevue/resources/themes/vela-blue/theme.css';
-import 'primevue/resources/themes/vela-blue/theme.css';
+import 'primevue/resources/primevue.min.css';
 
 const app = createApp(App);
 app.use(PrimeVue);

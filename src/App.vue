@@ -1,35 +1,51 @@
 <template>
   <div id="app" class="container">
-    <h1>{{ title }}</h1>
+    
+    <a href="/" style="text-decoration:none; color: inherit;"><h1>{{ title }}</h1></a>
     <Divider />
-    <form @submit.prevent="calculateLength">
-      <InputText type="text" placeholder="Paste YouTube Playlist Link" v-model="youtubePlaylistId" :class="{'p-invalid': invalidLink !== '' && youtubePlaylistId !== ''}" />
-      <Button label="Submit" @click="calculateLength" v-if="isLinkInvalid != true" />
-      <InlineMessage severity="error" v-if="invalidLink != '' && youtubePlaylistId != ''">{{ invalidLink }}</InlineMessage>
+    
+    <form class="full-width-form" @submit.prevent="calculateLength">
+      <div class="input-container">
+        <InputText
+          class="full-width-input"
+          autofocus
+          type="text"
+          placeholder="Paste YouTube Playlist Link"
+          v-model="youtubePlaylistId"
+          :class="{'p-invalid': invalidLink !== '' && youtubePlaylistId !== ''}"
+        />
+        <Button label="Submit" class="full-width-submit" @click="calculateLength" v-if="isLinkInvalid != true" />
+      </div>
+      <InlineMessage class="full-width-inlineMessage" severity="error" v-if="invalidLink != '' && youtubePlaylistId != ''">
+        {{ invalidLink }}
+      </InlineMessage>
     </form>
 
-    <div>
-      <span>Playback Speed: {{ playbackSpeed }}x</span>
-      <br>
-      <Slider type="range" v-model="playbackSpeed" :min="0.25" :max="2" :step="0.25" class="w-14rem" />
+    <div class="slider-container">
+      <div class="p-card p-d-flex p-justify-center" style="padding: 10px; border: 1px solid #304562; border-radius: 10px;">
+        <p>Playback Speed: {{ playbackSpeed }}x</p>
+        <Slider type="range" v-model="playbackSpeed" :min="0.25" :max="2" :step="0.05" />
+      </div>
     </div>
-    
-    <div v-if="response && response.data && response.data.video_list !== 'Invalid link'">
-      <h2>Playlist duration: {{ formatDuration(adjustedDuration) }}</h2>
+
+
+    <div class="playlist-items" v-if="response && response.data && response.data.video_list !== 'Invalid link'">
+      <h3>Playlist Duration: {{ formatDuration(adjustedDuration) }}</h3>
       <Divider />
-      <ul style="list-style: none;">
-        <li v-for="video in response.data.video_list" :key="video.snippet.title">
+      <div class="card-container">
+        <div v-for="video in response.data.video_list" :key="video.snippet.title" class="card" style="margin-bottom: 10px;">
           <a :href="'https://www.youtube.com/watch?v=' + video.snippet.resourceId.videoId" style="text-decoration:none">
-            <Card style="width: 20em">
+            <Card style="border: 1px solid #304562; border-radius: 10px;">
               <template #header>
-                  <img alt="Thumbnail" :src="video.snippet.thumbnails.medium.url" style="width: 20em" />
+                <img alt="Thumbnail" :src="video.snippet.thumbnails.medium.url" style="border: 1px solid #304562; border-radius: 10px;" />
               </template>
-              <template #subtitle> {{ video.snippet.position + 1 }}. {{ video.snippet.title }} </template>
+              <template #content><p>{{ video.snippet.position + 1 }}. {{ video.snippet.title }}</p></template>
             </Card>
-          </a><br>
-        </li>
-      </ul>
+          </a>
+        </div>
+      </div>
     </div>
+
  
     <ScrollTop />
   </div>
@@ -37,6 +53,8 @@
 
 <script>
 import axios from 'axios'
+import '@/assets/styles.css';
+
 
 export default {
   data() {
@@ -115,10 +133,3 @@ export default {
   },
 }
 </script>
-
-<!-- <style>
-#app {
-  text-align: center;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-</style> -->
