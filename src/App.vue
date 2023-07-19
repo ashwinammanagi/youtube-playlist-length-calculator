@@ -3,7 +3,6 @@
     
     <a href="/" style="text-decoration:none; color: #dbdbdb;"><h1>{{ title }}</h1></a>
     <Divider />
-    <!-- <img src="@\assets\images\video-not-found.png"> -->
     <form class="full-width-form" @submit.prevent="calculateLength">
       <div class="input-container">
         <InputText
@@ -35,7 +34,7 @@
     <div class="slider-container">
       <div class="p-card p-d-flex p-justify-center" style="padding: 1rem; border: 0.09rem solid #304562; border-radius: 0.5rem;">
         <p style="color: #a2a6ac">Playback Speed: {{ playbackSpeed }}x <i class="pi pi-forward"></i></p>
-        <Slider type="range" v-model="playbackSpeed" :min="0.25" :max="2" :step="0.05" />
+        <Slider type="range" v-model="playbackSpeed" :min="0.25" :max="2" :step="0.05" aria-label="playback speed slider" />
       </div>
     </div>
 

@@ -1,4 +1,8 @@
 {
+  "short_name": "YT Playlist Length",
+  "name": "YouTube Playlist Length Calculator",
+  "theme_color": "#040d1b",
+  "start_url": "/index.html",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",
