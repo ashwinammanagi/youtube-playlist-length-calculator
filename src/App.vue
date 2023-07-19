@@ -14,10 +14,12 @@
           v-model="youtubePlaylistId"
           :class="{'p-invalid': invalidLink !== '' && youtubePlaylistId !== ''}"
         />
-        <Button label="Submit" 
-          class="full-width-submit" 
-          @click="calculateLength" 
-          v-if="isLinkInvalid != true" 
+        <Button
+          label="Submit"
+          class="full-width-submit"
+          @click="calculateLength"
+          v-if="isLinkInvalid != true"
+          :disabled="isSubmitting"
           icon="pi pi-arrow-right"
           iconPos="right"
         /> 
@@ -40,7 +42,12 @@
 
     <div class="playlist-items" v-if="response && response.data && response.data.video_list !== 'Invalid link'">
       <h3 style="color: #dbdbdb;">Playlist Duration: {{ formatDuration(adjustedDuration) }} <i class="pi pi-clock"></i></h3>
-      <p style="color: #dbdbdb;">Total Videos: {{ response.data.video_list.length }}</p>
+      <p style="color: #dbdbdb;">
+        {{ response.data.maxed === 'maxed'
+          ? 'Total number of videos limited to: ' + response.data.video_list.length
+          : 'Total videos: ' + response.data.video_list.length }}
+      </p>
+
       <Divider />
       <div class="card-container">
         <div v-for="video in response.data.video_list" :key="video.snippet.title" class="card">
@@ -63,7 +70,7 @@
         <Accordion >
             <AccordionTab header="What is YouTube Playlist Length Calculator?">
                 <p>
-                  YouTube Playlist Length Calculator allows you to calculate the total duration of YouTube playlist. Paste the playlist link above to calculate the length. Current limitation allows maximum videos of 50 in the playlist.
+                  YouTube Playlist Length Calculator allows you to calculate the total duration of YouTube playlist. Paste the playlist link above to calculate the length. Current limitation allows maximum videos of 200 in the playlist.
                 </p>
             </AccordionTab>
             <AccordionTab header="How to adjust the playback speed for calculating the playlist duration?">
@@ -99,6 +106,7 @@ export default {
       response: '',
       adjustedDuration: 0,
       invalidLink: '',
+      isSubmitting: false,
     }
   },
 
@@ -122,20 +130,35 @@ export default {
 
   methods: {
     async calculateLength() {
-      const extractedPlaylistId = this.extractPlaylistId(this.youtubePlaylistId);
+      if (this.isSubmitting) return; // Prevent multiple submissions
+      this.isSubmitting = true;
+      
+      try {
+        const extractedPlaylistId = this.extractPlaylistId(this.youtubePlaylistId);
 
-      const apiUrl = `https://06r3ffbbpc.execute-api.us-east-1.amazonaws.com/youtubePlaylistLengthCalculator`;
-      const response = await axios.post(apiUrl, {
-        youtubePlaylistId: extractedPlaylistId,
-      });
+        const apiUrl = 'https://06r3ffbbpc.execute-api.us-east-1.amazonaws.com/youtubePlaylistLengthCalculator';
+        const response = await axios.post(apiUrl, {
+          youtubePlaylistId: extractedPlaylistId,
+        });
 
-      console.log(response.data);
+        console.log(response.data);
 
-      if (response.data.video_list == 'Invalid link') {
-        this.invalidLink = 'Invalid YouTube playlist link';
-      } else {
-        this.response = response;
-        this.adjustedDuration = response.data['duration'] / this.playbackSpeed;
+        if (response.data.video_list === 'Invalid link') {
+          this.invalidLink = 'Invalid YouTube playlist link';
+        } else {
+          this.response = response;
+          this.adjustedDuration = response.data['duration'] / this.playbackSpeed;
+        }
+      } catch (error) {
+        console.error('An error occurred while fetching playlist data:', error);
+        // Optionally, you can handle specific error types differently
+        if (error.response && error.response.status === 404) {
+          this.invalidLink = 'YouTube playlist not found';
+        } else {
+          this.invalidLink = 'Error fetching playlist data';
+        }
+      } finally {
+        this.isSubmitting = false;
       }
     },
 
