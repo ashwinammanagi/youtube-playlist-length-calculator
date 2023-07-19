@@ -1,8 +1,8 @@
 <template>
   <div id="app" class="container">
+ 
+    <a href="/" style="text-decoration:none; color: #dbdbdb;"><h1 style="font-size: large;">{{ title }}</h1></a>
     
-    <a href="/" style="text-decoration:none; color: #dbdbdb;"><h1>{{ title }}</h1></a>
-    <Divider />
     <form class="full-width-form" @submit.prevent="calculateLength">
       <div class="input-container">
         <InputText
@@ -64,8 +64,8 @@
 
     <div class="accordion-table" v-else>
       <Divider />
-      FAQs
-      <div style="margin-top: 2rem; text-align: left;">
+      <div style="margin-top: 1rem; text-align: left;">
+      <p style="color: #a2a6a9; text-align: center;">FAQs</p>
         <Accordion >
             <AccordionTab header="What is YouTube Playlist Length Calculator?">
                 <p>
@@ -86,7 +86,10 @@
       </div>
     </div>
 
- 
+    <footer class="footer">
+      <p><small>&copy; 2023 <a href="https://iash.dev" target="_blank" style="color: #a2a6a9;">Ashwin Ammanagi</a>. All rights reserved.</small></p>      
+    </footer>
+
     <ScrollTop />
   </div>
 </template>
