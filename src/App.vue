@@ -146,7 +146,7 @@ export default {
           youtubePlaylistId: extractedPlaylistId,
         });
 
-        console.log(response.data);
+        // console.log(response.data);
 
         if (response.data.video_list === 'Invalid link') {
           this.invalidLink = 'Invalid YouTube playlist link';
