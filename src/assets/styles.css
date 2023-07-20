@@ -18,9 +18,32 @@ body {
   padding-right: 0.5rem;
 }
 
+/* Medium heading for phones */
+.heading-mobile {
+  font-size: large;
+}
+
 @media (max-width: 600px) {
   .container {
     max-width: 100%;
+  }
+
+  .heading-desktop {
+    display: none; /* Hide the large heading on phones */
+  }
+
+  .heading-mobile {
+    display: block; /* Show the medium heading on phones */
+  }
+}
+
+@media (min-width: 601px) {
+  .heading-desktop {
+    display: block; /* Show the large heading on desktops */
+  }
+
+  .heading-mobile {
+    display: none; /* Hide the medium heading on desktops */
   }
 }
 
@@ -33,6 +56,10 @@ body {
     margin-top: 1rem;
   }
   
+.heading {
+  font-size: x-large;
+}
+
   .input-container {
     display: flex;
   }

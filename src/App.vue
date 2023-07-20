@@ -1,7 +1,10 @@
 <template>
   <div id="app" class="container">
  
-    <a href="/" style="text-decoration:none; color: #dbdbdb;"><h1 style="font-size: large;">{{ title }}</h1></a>
+    <a href="/" style="text-decoration:none; color: #dbdbdb;">
+      <h1 class="heading-desktop">{{ title }}</h1>
+      <h1 class="heading-mobile">{{ title }}</h1>
+    </a>
     
     <form class="full-width-form" @submit.prevent="calculateLength">
       <div class="input-container">
@@ -9,7 +12,7 @@
           class="full-width-input"
           autofocus
           type="text"
-          placeholder="Paste YouTube Playlist Link Here"
+          placeholder="Paste YouTube Playlist Link Here To Find It's Duration"
           v-model="youtubePlaylistId"
           :class="{'p-invalid': invalidLink !== '' && youtubePlaylistId !== ''}"
         />
@@ -32,9 +35,9 @@
     </form>
 
     <div class="slider-container">
-      <div class="p-card p-d-flex p-justify-center" style="padding: 1rem; border: 0.09rem solid #304562; border-radius: 0.5rem;">
-        <p style="color: #a2a6ac">Playback Speed: {{ playbackSpeed }}x <i class="pi pi-forward"></i></p>
-        <Slider type="range" v-model="playbackSpeed" :min="0.25" :max="2" :step="0.05" aria-label="playback speed slider" />
+      <div class="p-card p-d-flex p-justify-center" style="padding: 0.5rem; border: 0.09rem solid #304562; border-radius: 0.5rem;">
+        <p style="color: #a2a6ac; padding-bottom: 1rem;">Playback Speed: {{ playbackSpeed }}x <i class="pi pi-forward"></i></p>
+        <Slider type="range" v-model="playbackSpeed" :min="0.25" :max="2" :step="0.05" aria-label="playback speed slider" style="margin-bottom: 0.5rem;" />
       </div>
     </div>
 
