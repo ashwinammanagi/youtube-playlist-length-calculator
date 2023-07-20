@@ -17,13 +17,11 @@
           :class="{'p-invalid': invalidLink !== '' && youtubePlaylistId !== ''}"
         />
         <Button
-          label="Submit"
+          label="Submit ➡️"
           class="full-width-submit"
           @click="calculateLength"
           v-if="isLinkInvalid != true"
           :disabled="isSubmitting"
-          icon="pi pi-arrow-right"
-          iconPos="right"
         /> 
       </div>
       <InlineMessage 
@@ -36,14 +34,14 @@
 
     <div class="slider-container">
       <div class="p-card p-d-flex p-justify-center" style="padding: 0.5rem; border: 0.09rem solid #304562; border-radius: 0.5rem;">
-        <p style="color: #a2a6ac; padding-bottom: 1rem;">Playback Speed: {{ playbackSpeed }}x <i class="pi pi-forward"></i></p>
+        <p style="color: #a2a6ac; padding-bottom: 1rem;">Playback Speed: {{ playbackSpeed }}x ⏩</p>
         <Slider type="range" v-model="playbackSpeed" :min="0.25" :max="2" :step="0.05" aria-label="playback speed slider" style="margin-bottom: 0.5rem;" />
       </div>
     </div>
 
 
     <div class="playlist-items" v-if="response && response.data && response.data.video_list !== 'Invalid link'">
-      <h3 style="color: #dbdbdb;">Playlist Duration: {{ formatDuration(adjustedDuration) }} <i class="pi pi-clock"></i></h3>
+      <h3 style="color: #dbdbdb;">Playlist Duration: {{ formatDuration(adjustedDuration) }} 🕒</h3>
       <p style="color: #dbdbdb;">
         {{ response.data.maxed === 'maxed'
           ? 'Total number of videos limited to: ' + response.data.video_list.length

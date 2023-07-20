@@ -15,7 +15,6 @@ import AccordionTab from 'primevue/accordiontab';
 // theme
 import 'primevue/resources/themes/vela-blue/theme.css';
 import 'primevue/resources/primevue.min.css';
-import 'primeicons/primeicons.css';
 import './registerServiceWorker'
 
 const app = createApp(App);
