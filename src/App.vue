@@ -174,6 +174,15 @@ export default {
     validateLink(link) {
       const extractedPlaylistId = this.extractPlaylistId(link);
       this.invalidLink = extractedPlaylistId ? '' : 'Invalid YouTube playlist link';
+      
+      if (link.includes('watch?v=') || link.includes('youtu.be')) {
+        this.invalidLink = 'You have entered a video link. Please enter a Playlist link!'
+      } else if (extractedPlaylistId) {
+        this.invalidLink = ''
+      } else {
+        this.invalidLink = 'Invalid YouTube playlist link'
+      }
+
     },
 
     formatDuration(durationInSeconds) {
