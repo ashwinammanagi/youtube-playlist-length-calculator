@@ -43,6 +43,9 @@
     <div class="playlist-items" v-if="response && response.data && response.data.video_list !== 'Invalid link'">
       <h3 style="color: #dbdbdb;">Playlist Duration: {{ formatDuration(adjustedDuration) }} 🕒</h3>
       <p style="color: #dbdbdb;">
+        Average video duration: {{ formatDuration(this.response.data['duration']/response.data.video_list.length) }}
+      </p>
+      <p style="color: #dbdbdb;">
         {{ response.data.maxed === 'maxed'
           ? 'Total number of videos limited to: ' + response.data.video_list.length
           : 'Total videos: ' + response.data.video_list.length }}
