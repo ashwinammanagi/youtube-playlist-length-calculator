@@ -54,7 +54,7 @@
       <Divider />
       <div class="card-container">
         <div v-for="video in response.data.video_list" :key="video.snippet.title" class="card">
-          <a :href="'https://www.youtube.com/watch?v=' + video.snippet.resourceId.videoId" style="text-decoration:none">
+          <a :href="'https://www.youtube.com/watch?v=' + video.snippet.resourceId.videoId" style="text-decoration:none" target="_blank">
             <Card style="border: 0.09rem solid #304562; border-radius: 0.5rem;">
               <template #header>
                 <img alt="Thumbnail" :src="video.snippet.thumbnails && video.snippet.thumbnails.medium ? video.snippet.thumbnails.medium.url : require('@/assets/images/video-not-found.png')" style="border: 0.09rem solid #304562; border-radius: 0.5rem; width: 320px;" />
