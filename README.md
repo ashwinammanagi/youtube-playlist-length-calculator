@@ -1,19 +1,5 @@
-# youtube-playlist-length
+# Youtube Playlist Length Calculator
 
-## Project setup
-```
-npm install
-```
+YouTube Playlist Length Calculator allows you to calculate the total duration of a YouTube playlist in days, hours, minutes or seconds.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+View the live project [here](https://yt-playlist-len.iash.dev/).
