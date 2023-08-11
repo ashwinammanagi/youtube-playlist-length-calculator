@@ -4,4 +4,4 @@ YouTube Playlist Length Calculator allows you to calculate the total duration of
 
 ---
 
-![Youtube Playlist Length Calculator](src\assets\images\screenshot.png)
+![Youtube Playlist Length Calculator](screenshot.png)
